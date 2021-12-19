@@ -3,6 +3,7 @@ package com.server.jourina.service;
 import com.server.jourina.entity.User;
 import com.server.jourina.repository.DepartmentRepository;
 import com.server.jourina.repository.RoleRepository;
+import com.server.jourina.repository.UserJournalRepository;
 import com.server.jourina.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class UserService {
     private DepartmentRepository departmentRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private UserJournalRepository userJournalRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -32,7 +35,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<User> findALl(){
-        return userRepository.findAll();
+    public void setUserJournal(String login, Integer journalId){
+        userJournalRepository.setUserJournal(userRepository.findByLogin(login).getId(), journalId);
+    }
+
+    public User findByLogin(String login){
+        return userRepository.findByLogin(login);
     }
 }

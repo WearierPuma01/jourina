@@ -1,25 +1,25 @@
 package com.server.jourina.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "journal")
-public class Journal {
+@Table(name = "element")
+public class Element {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "journal", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "element", fetch=FetchType.LAZY)
     private List<Note> note;
-
-    @ManyToMany(mappedBy = "journal")
-    private List<User> user;
 
     public String getName() {
         return name;
@@ -29,6 +29,8 @@ public class Journal {
         this.name = name;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "id")
     public Integer getId() {
         return id;
     }
@@ -37,6 +39,8 @@ public class Journal {
         this.id = id;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "note")
     public List<Note> getNote() {
         return note;
     }
@@ -45,37 +49,28 @@ public class Journal {
         this.note = note;
     }
 
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Journal journal = (Journal) o;
-        return Objects.equals(id, journal.id) && Objects.equals(name, journal.name) && Objects.equals(note, journal.note) && Objects.equals(user, journal.user);
+        Element element = (Element) o;
+        return Objects.equals(id, element.id) && Objects.equals(name, element.name) && Objects.equals(note, element.note);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, note, user);
+        return Objects.hash(id, name, note);
     }
 
     @Override
     public String toString() {
-        return "Journal{" +
+        return "Element{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", note=" + note +
-                ", user=" + user +
                 '}';
     }
 
-    public Journal() {
+    public Element() {
     }
 }

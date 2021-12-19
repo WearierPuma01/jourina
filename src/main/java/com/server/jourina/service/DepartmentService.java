@@ -22,6 +22,10 @@ public class DepartmentService {
         departmentRepository.save(department);
     }
 
+    public Department findByName(String name){
+        return departmentRepository.findByName(name);
+    }
+
     public List<Department> findAll(){
         return departmentRepository.findAll();
     }

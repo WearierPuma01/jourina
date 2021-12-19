@@ -50,4 +50,7 @@ public class Role {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public Role() {
+    }
 }
