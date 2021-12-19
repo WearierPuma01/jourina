@@ -112,4 +112,7 @@ public class Log {
                 ", newValue='" + newValue + '\'' +
                 '}';
     }
+
+    public Log() {
+    }
 }
