@@ -1,6 +1,7 @@
 package com.server.jourina.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,6 +28,17 @@ public class User {
     @ManyToOne(optional = false)
     @JoinColumn(name = "department", nullable = false)
     private Department department;
+
+    @OneToMany(mappedBy = "users", fetch=FetchType.LAZY)
+    private List<Note> note;
+
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinTable(
+            name="user_journal",
+            joinColumns = @JoinColumn(name="id_user"),
+            inverseJoinColumns = @JoinColumn(name="id_journal")
+    )
+    private List<Journal> journal;
 
     public Department getDepartment() {
         return department;
@@ -76,17 +88,33 @@ public class User {
         this.id = id;
     }
 
+    public List<Note> getNote() {
+        return note;
+    }
+
+    public void setNote(List<Note> note) {
+        this.note = note;
+    }
+
+    public List<Journal> getJournal() {
+        return journal;
+    }
+
+    public void setJournal(List<Journal> journal) {
+        this.journal = journal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(role, user.role) && Objects.equals(department, user.department);
+        return Objects.equals(id, user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(role, user.role) && Objects.equals(department, user.department) && Objects.equals(note, user.note) && Objects.equals(journal, user.journal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, role, department);
+        return Objects.hash(id, login, password, name, role, department, note, journal);
     }
 
     @Override
@@ -98,6 +126,11 @@ public class User {
                 ", name='" + name + '\'' +
                 ", role=" + role +
                 ", department=" + department +
+                ", note=" + note +
+                ", journal=" + journal +
                 '}';
+    }
+
+    public User() {
     }
 }

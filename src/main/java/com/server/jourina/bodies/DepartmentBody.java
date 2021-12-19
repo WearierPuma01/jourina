@@ -1,9 +1,9 @@
 package com.server.jourina.bodies;
 
-public class AddDepartmentBody {
+public class DepartmentBody {
     private String name;
 
-    public AddDepartmentBody() {
+    public DepartmentBody() {
     }
 
     public String getName() {
