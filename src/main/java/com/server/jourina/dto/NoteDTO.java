@@ -16,7 +16,6 @@ public class NoteDTO {
     private String startDate;
     private String endDate;
     private String probeCode;
-    private Long probeId;
     private SampleDTO sampleName;
     private ElementDTO elementName;
     private String document;
@@ -45,7 +44,6 @@ public class NoteDTO {
             noteDTO.setStartDate(note.getStartDate());
             noteDTO.setEndDate(note.getEndDate());
             noteDTO.setProbeCode(note.getProbeCode());
-            noteDTO.setProbeId(note.getProbeId());
             sampleName.setName(note.getSample().getName());
             noteDTO.setSampleName(sampleName);
             elementName.setName(note.getElement().getName());
@@ -105,14 +103,6 @@ public class NoteDTO {
 
     public void setProbeCode(String probeCode) {
         this.probeCode = probeCode;
-    }
-
-    public Long getProbeId() {
-        return probeId;
-    }
-
-    public void setProbeId(Long probeId) {
-        this.probeId = probeId;
     }
 
     public SampleDTO getSampleName() {

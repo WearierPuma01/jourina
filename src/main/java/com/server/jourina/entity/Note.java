@@ -23,9 +23,6 @@ public class Note {
     @Column(name = "probe_code", nullable = false)
     private String probeCode;
 
-    @Column(name = "probe_id", nullable = false)
-    private Long probeId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sample", referencedColumnName = "id")
     private Sample sample;
@@ -195,14 +192,6 @@ public class Note {
         this.element = element;
     }
 
-    public Long getProbeId() {
-        return probeId;
-    }
-
-    public void setProbeId(Long probeId) {
-        this.probeId = probeId;
-    }
-
     public String getProbeCode() {
         return probeCode;
     }
@@ -248,12 +237,12 @@ public class Note {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note = (Note) o;
-        return Objects.equals(id, note.id) && Objects.equals(incomeDate, note.incomeDate) && Objects.equals(startDate, note.startDate) && Objects.equals(endDate, note.endDate) && Objects.equals(probeCode, note.probeCode) && Objects.equals(probeId, note.probeId) && Objects.equals(sample, note.sample) && Objects.equals(element, note.element) && Objects.equals(document, note.document) && Objects.equals(probeWeightF, note.probeWeightF) && Objects.equals(probeWeightS, note.probeWeightS) && Objects.equals(size, note.size) && Objects.equals(resultF, note.resultF) && Objects.equals(resultS, note.resultS) && Objects.equals(divergence, note.divergence) && Objects.equals(norma, note.norma) && Objects.equals(proportion, note.proportion) && Objects.equals(error, note.error) && Objects.equals(resultDate, note.resultDate) && Objects.equals(users, note.users) && Objects.equals(journal, note.journal);
+        return Objects.equals(id, note.id) && Objects.equals(incomeDate, note.incomeDate) && Objects.equals(startDate, note.startDate) && Objects.equals(endDate, note.endDate) && Objects.equals(probeCode, note.probeCode) && Objects.equals(sample, note.sample) && Objects.equals(element, note.element) && Objects.equals(document, note.document) && Objects.equals(probeWeightF, note.probeWeightF) && Objects.equals(probeWeightS, note.probeWeightS) && Objects.equals(size, note.size) && Objects.equals(resultF, note.resultF) && Objects.equals(resultS, note.resultS) && Objects.equals(divergence, note.divergence) && Objects.equals(norma, note.norma) && Objects.equals(proportion, note.proportion) && Objects.equals(error, note.error) && Objects.equals(resultDate, note.resultDate) && Objects.equals(users, note.users) && Objects.equals(journal, note.journal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, incomeDate, startDate, endDate, probeCode, probeId, sample, element, document, probeWeightF, probeWeightS, size, resultF, resultS, divergence, norma, proportion, error, resultDate, users, journal);
+        return Objects.hash(id, incomeDate, startDate, endDate, probeCode, sample, element, document, probeWeightF, probeWeightS, size, resultF, resultS, divergence, norma, proportion, error, resultDate, users, journal);
     }
 
     @Override
@@ -264,7 +253,6 @@ public class Note {
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", probeCode='" + probeCode + '\'' +
-                ", probeId=" + probeId +
                 ", sample=" + sample +
                 ", element=" + element +
                 ", document='" + document + '\'' +

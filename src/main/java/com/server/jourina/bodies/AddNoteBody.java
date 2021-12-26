@@ -5,7 +5,6 @@ public class AddNoteBody {
     private String startDate;
     private String endDate;
     private String probeCode;
-    private Long probeId;
     private String sample;
     private String element;
     private String document;
@@ -52,14 +51,6 @@ public class AddNoteBody {
 
     public void setProbeCode(String probeCode) {
         this.probeCode = probeCode;
-    }
-
-    public Long getProbeId() {
-        return probeId;
-    }
-
-    public void setProbeId(Long probeId) {
-        this.probeId = probeId;
     }
 
     public String getSample() {

@@ -22,8 +22,7 @@ public class NoteService {
         this.noteRepository = noteRepository;
     }
 
-    public void addNote(String incomeDate, String startDate, String endDate, String probeCode,
-                        Long probeId, String sample, String element, String document,
+    public void addNote(String incomeDate, String startDate, String endDate, String probeCode, String sample, String element, String document,
                         Double probeWeightF, Double probeWeightS, Double size, Double resultF,
                         Double resultS, Double norma, String resultDate, String user, Integer journal){
         Note note = new Note();
@@ -31,7 +30,6 @@ public class NoteService {
         note.setStartDate(startDate);
         note.setEndDate(endDate);
         note.setProbeCode(probeCode);
-        note.setProbeId(probeId);
         note.setSample(sampleRepository.findByName(sample));
         note.setElement(elementRepository.findByName(element));
         note.setDocument(document);
@@ -51,8 +49,7 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public void updateNote(Integer id, String incomeDate, String startDate, String endDate, String probeCode,
-                           Long probeId, String sample, String element, String document,
+    public void updateNote(Integer id, String incomeDate, String startDate, String endDate, String probeCode, String sample, String element, String document,
                            Double probeWeightF, Double probeWeightS, Double size, Double resultF,
                            Double resultS, Double divergence, Double norma, Double proportion,
                            Double error, String resultDate, String user, Integer journal){
@@ -61,7 +58,6 @@ public class NoteService {
         note.setStartDate(startDate);
         note.setEndDate(endDate);
         note.setProbeCode(probeCode);
-        note.setProbeId(probeId);
         note.setSample(sampleRepository.findByName(sample));
         note.setElement(elementRepository.findByName(element));
         note.setDocument(document);
