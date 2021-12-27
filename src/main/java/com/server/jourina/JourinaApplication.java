@@ -8,9 +8,9 @@ import javax.swing.*;
 public class JourinaApplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(JourinaApplication.class, args);
-        JourinaGUI jourinaGUI = new JourinaGUI();
-        jourinaGUI.setVisible(true);
+        SpringApplication.run(JourinaApplication.class, args);
+        //JourinaGUI jourinaGUI = new JourinaGUI();
+        //jourinaGUI.setVisible(true);
 
     }
 
