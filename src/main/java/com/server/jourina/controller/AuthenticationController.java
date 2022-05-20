@@ -1,29 +1,33 @@
 package com.server.jourina.controller;
 
 import com.server.jourina.bodies.AuthRequest;
+import com.server.jourina.entity.User;
+import com.server.jourina.entity.UserAuth;
+import com.server.jourina.repository.UserRepository;
+import com.server.jourina.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class AuthenticationController {
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private UserService userService;
 
     @GetMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public boolean login(@RequestBody AuthRequest authRequest){
-        Authentication authentication;
-        try{
-            authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword()));
-            return true;
-        } catch (BadCredentialsException e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Login or Password wrong!", e);
-        }
+    public UserAuth login(@RequestBody AuthRequest authRequest){
+
+        UserAuth userAuth = new UserAuth();
+        userAuth.user = userService.findByLogin(authRequest.getLogin());
+        if(userAuth.user.getPassword().equals(authRequest.getPassword()))
+            userAuth.successAuth();
+        else
+            userAuth.unsucessAuth();
+        return userAuth;
     }
 }
