@@ -20,7 +20,8 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public UserAuth login(@RequestBody AuthRequest authRequest){
+    public @ResponseBody UserAuth login(@RequestBody AuthRequest authRequest){
+
 
         UserAuth userAuth = new UserAuth();
         userAuth.user = userService.findByLogin(authRequest.getLogin());
