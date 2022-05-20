@@ -28,11 +28,11 @@ public class DepartmentController {
         }
     }
 
-    @PostMapping("/listUsers")
+    /*@PostMapping("/listUsers")
     public @ResponseBody
     List<UserDTO> userList(@RequestBody DepartmentBody departmentBody){
-        List<User> user = departmentService.findByName(departmentBody.getName()).getUser();
+        List<User> user = userService.findByLogin(departmentBody.getName());
         UserDTO userDTO = new UserDTO();
         return userDTO.getUserDTOList(user);
-    }
+    }*/
 }
