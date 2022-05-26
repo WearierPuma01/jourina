@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDTO {
+    private Integer id;
     private String name;
     private String login;
+    private String password;
 
     @Transactional
     public List<UserDTO> getUserDTOList(List<User> userList){
@@ -36,5 +38,21 @@ public class UserDTO {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
