@@ -20,13 +20,9 @@ public class JournalController {
     private JournalService journalService;
 
     @PostMapping("/createJournal")
-    public void createJournal(@RequestBody CreateJournalBody createJournalBody, HttpServletResponse response){
-        try{
-            journalService.createJournal(createJournalBody.getName());
-            response.setStatus(HttpServletResponse.SC_CREATED);
-        }catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }
+    public @ResponseBody Integer createJournal(@RequestBody CreateJournalBody createJournalBody){
+        journalService.createJournal(createJournalBody.getName());
+        return journalService.getLastJournal().getId();
     }
 
     @PostMapping("/listNote")

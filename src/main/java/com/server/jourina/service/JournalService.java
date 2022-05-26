@@ -23,4 +23,7 @@ public class JournalService {
     public Journal findById(Integer id){
         return journalRepository.findById(id).get();
     }
+    public Journal getLastJournal(){
+        return journalRepository.findFirstByOrderByIdDesc();
+    }
 }
