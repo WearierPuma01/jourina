@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface JournalRepository extends JpaRepository<Journal, Integer> {
     Optional<Journal> findById(Integer id);
+    Journal findFirstByOrderByIdDesc();
 }
