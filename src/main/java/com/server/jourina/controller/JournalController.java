@@ -1,5 +1,8 @@
 package com.server.jourina.controller;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.server.jourina.bodies.CreateJournalBody;
 import com.server.jourina.bodies.JournalBody;
 import com.server.jourina.dto.NoteDTO;
@@ -12,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class JournalController {
@@ -20,9 +26,11 @@ public class JournalController {
     private JournalService journalService;
 
     @PostMapping("/createJournal")
-    public @ResponseBody Integer createJournal(@RequestBody CreateJournalBody createJournalBody){
+    public @ResponseBody Map createJournal(@RequestBody CreateJournalBody createJournalBody){
         journalService.createJournal(createJournalBody.getName());
-        return journalService.getLastJournal().getId();
+        Map<String, Integer> map = new HashMap<>();
+        map.put("id", journalService.getLastJournal().getId());
+        return map;
     }
 
     @PostMapping("/listNote")
