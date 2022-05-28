@@ -26,4 +26,8 @@ public class JournalService {
     public Journal getLastJournal(){
         return journalRepository.findFirstByOrderByIdDesc();
     }
+
+    public void deleteJournal(Integer id){
+        journalRepository.delete(journalRepository.findById(id).get());
+    }
 }
