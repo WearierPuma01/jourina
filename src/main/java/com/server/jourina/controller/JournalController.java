@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.server.jourina.bodies.CreateJournalBody;
+import com.server.jourina.bodies.DeleteBody;
 import com.server.jourina.bodies.JournalBody;
 import com.server.jourina.dto.NoteDTO;
 import com.server.jourina.entity.Note;
@@ -41,4 +42,13 @@ public class JournalController {
         return noteDTO.getNoteDTOList(note);
     }
 
+    @PostMapping("/deleteJournal")
+    public void deleteJournal(@RequestBody DeleteBody deleteBody, HttpServletResponse response){
+        try{
+            journalService.deleteJournal(deleteBody.getId());
+            response.setStatus(HttpServletResponse.SC_OK);
+        }catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
