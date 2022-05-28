@@ -75,4 +75,9 @@ public class NoteService {
         note.setJournal(journalRepository.findById(journal).get());
         noteRepository.save(note);
     }
+
+    public void deleteNote(Integer id){
+        noteRepository.delete(noteRepository.findById(id).get());
+    }
+
 }

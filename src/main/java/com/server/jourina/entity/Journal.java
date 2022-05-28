@@ -15,7 +15,7 @@ public class Journal {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "journal", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "journal", fetch=FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Note> note;
 
     @ManyToMany(mappedBy = "journal")

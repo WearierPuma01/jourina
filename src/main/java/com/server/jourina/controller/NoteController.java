@@ -1,6 +1,7 @@
 package com.server.jourina.controller;
 
 import com.server.jourina.bodies.AddNoteBody;
+import com.server.jourina.bodies.DeleteBody;
 import com.server.jourina.bodies.UpdateNoteBody;
 import com.server.jourina.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,16 @@ public class NoteController {
         try{
             noteService.updateNote(updateNoteBody.getId(), updateNoteBody.getIncomeDate(), updateNoteBody.getStartDate(), updateNoteBody.getEndDate(), updateNoteBody.getProbeCode(), updateNoteBody.getSample(), updateNoteBody.getElement(), updateNoteBody.getDocument(), updateNoteBody.getProbeWeightF(), updateNoteBody.getProbeWeightS(), updateNoteBody.getSize(), updateNoteBody.getResultF(), updateNoteBody.getResultS(), updateNoteBody.getDivergence(), updateNoteBody.getNorma(), updateNoteBody.getProportion(), updateNoteBody.getError(), updateNoteBody.getResultDate(), updateNoteBody.getUser(), updateNoteBody.getJournal());
             response.setStatus(HttpServletResponse.SC_CREATED);
+        }catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/deleteNote")
+    public void deleteJournal(@RequestBody DeleteBody deleteBody, HttpServletResponse response){
+        try{
+            noteService.deleteNote(deleteBody.getId());
+            response.setStatus(HttpServletResponse.SC_OK);
         }catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
